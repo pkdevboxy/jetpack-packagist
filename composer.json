@@ -1,0 +1,45 @@
+{
+	"name":              "dreamfactory/jetpack-packagist",
+	"description":       "DreamFactory Services Platform(tm) Packagist API",
+	"type":              "dreamfactory-jetpack",
+	"keywords":          [
+		"dreamfactory", "jetpack", "packagist", "api", "dsp", "library"
+	],
+	"license":           [
+		"Apache-2.0"
+	],
+	"homepage":          "http://dreamfactorysoftware.github.io/",
+	"authors":           [
+		{
+			"name":  "Jerry Ablan",
+			"email": "jerryablan@dreamfactory.com"
+		}
+	],
+	"support":           {
+		"email":  "support@dreamfactory.com",
+		"issues": "https://github.com/dreamfactorysoftware/jetpack-packagist/issues",
+		"source": "https://github.com/dreamfactorysoftware/jetpack-packagist"
+	},
+	"minimum-stability": "dev",
+	"repositories":      [
+		{
+			"type": "pear",
+			"url":  "http://pear.php.net"
+		}
+	],
+	"require":           {
+		"php":                            ">=5.3.18",
+		"kisma/kisma":                    "*",
+		"dreamfactory/package-installer": "dev-develop as dev-master"
+	},
+	"require-dev":       {
+		"dreamfactory/oasys":                   "dev-develop as dev-master",
+		"dreamfactory/lib-php-common-platform": "dev-develop as dev-master"
+	},
+	"autoload":          {
+		"psr-4": {
+			"DreamFactory\\JetPack\\Packagist\\": "src/"
+		},
+		"files": ["autoload.php"]
+	}
+}
