@@ -1,3 +1,4 @@
+<?php
 /**
  * This file is part of the Packagist API JetPack
  * Copyright 2014 DreamFactory Software, Inc. <support@dreamfactory.com>
@@ -16,3 +17,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ * bootstrap.php
+ * Bootstrap file for all test cases
+ */
+
+//	Composer
+require_once dirname( __DIR__ ) . '/vendor/autoload.php';

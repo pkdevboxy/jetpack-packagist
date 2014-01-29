@@ -19,58 +19,38 @@
  */
 namespace DreamFactory\JetPack\Packagist;
 
-use Kisma\Core\Utility\Curl;
-use Kisma\Core\Utility\Option;
+/**
+ * ClientTest
+ */
+
+use DreamFactory\Oasys\Oasys;
+use DreamFactory\Oasys\Stores\FileSystem;
+use Kisma\Core\Interfaces\HttpMethod;
+use Kisma\Core\Utility\Log;
 
 /**
- * Client
- * A general-purpose library for access to Packagist
+ * ClientTest
+ * Tests the methods in the Oasys class
  */
-class Client extends Curl
+class ClientTest extends \PHPUnit_Framework_TestCase implements HttpMethod
 {
-	//*************************************************************************
-	//	Constants
-	//*************************************************************************
-
-	/**
-	 * @type string
-	 */
-	const DEFAULT_ENDPOINT_BASE = 'https://packagist.org';
-	/**
-	 * @type string
-	 */
-	const DEFAULT_USER_AGENT = 'DreamFactory/1.0 (Linux; x64; +http://www.dreamfactory.com) JetPack_Packagist_Client/1.0';
-
-	//*************************************************************************
-	//	Members
-	//*************************************************************************
-
-	/**
-	 * @var array
-	 */
-	protected $_endpoints = array(
-		'notify'       => '/downloads/{{package}}',
-		'notify-batch' => '/downloads',
-		'package'      => '/p/{{package}}.json',
-		'packages'     => '/packages/list.json',
-		'ping'         => '/packages.json',
-		'search'       => '/search.json',
-	);
-
-	//*************************************************************************
-	//	Methods
-	//*************************************************************************
-
-	/**
-	 * Retrieves a single of package
-	 *
-	 * @param string $packageName
-	 *
-	 * @return bool|mixed|\stdClass
-	 */
-	public function getPackage( $packageName )
+	protected function setUp()
 	{
-		return static::_apiRequest( $this->_getEndpoint( 'package', $packageName ) );
+		Log::setDefaultLog( __DIR__ . '/log/error.log' );
+
+		Oasys::setStore( new FileSystem( __FILE__ ) );
+
+		parent::setUp();
+	}
+
+	/**
+	 * @covers Client
+	 */
+	public function testGetPackage()
+	{
+		$_packageName = 'dreamfactory/dsp-core';
+
+		return static::_apiRequest( $this->_getEndpoint( 'package', $_packageName ) );
 	}
 
 	/**
